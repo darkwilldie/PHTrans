@@ -3,3 +3,11 @@ wandb
 .vscode
 *visualization.py
 *__pycache__*
+*.nii.gz
+*.nii
+*.npz
+*.npy
+*.pkl
+*.txt
+*.model
+*.png

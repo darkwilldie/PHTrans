@@ -298,6 +298,8 @@ class NetworkTrainer(object):
             self.load_latest_checkpoint(train)
 
     def load_latest_checkpoint(self, train=True):
+        # print('&'*50)
+        # print("self.output_folder", self.output_folder)
         if isfile(join(self.output_folder, "model_final_checkpoint.model")):
             return self.load_checkpoint(join(self.output_folder, "model_final_checkpoint.model"), train=train)
         if isfile(join(self.output_folder, "model_latest.model")):

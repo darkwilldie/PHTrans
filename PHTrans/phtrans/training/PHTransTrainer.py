@@ -311,6 +311,10 @@ class PHTransTrainer(nnUNetTrainer):
         :return:
         """
         if fold is not None:
+            # print("-"*50)
+            # print("Output folder:", self.output_folder)
+            # print("Fold:", self.fold)
+            # print("Experiment ID:", self.experiment_id)
             if isinstance(fold, str):
                 assert fold == "all", "if self.fold is a string then it must be \'all\'"
                 if self.output_folder.endswith("%s" % str(self.fold)):
@@ -322,6 +326,9 @@ class PHTransTrainer(nnUNetTrainer):
                     self.output_folder = self.output_folder_base
                 self.output_folder = join(
                     self.output_folder, "fold_%s" % str(fold), self.experiment_id)
+            
+            # print("-"*50)
+            # print("Output folder set to:", self.output_folder)
             self.fold = fold
 
     def run_iteration(self, data_generator, do_backprop=True, run_online_evaluation=False):
@@ -762,6 +769,8 @@ class PHTransTrainer(nnUNetTrainer):
         self._maybe_init_amp()
 
         maybe_mkdir_p(self.output_folder)
+        # print("*"*50)
+        # print('Output folder:', self.output_folder)
         self.plot_network_architecture()
 
         if cudnn.benchmark and cudnn.deterministic:
@@ -841,6 +850,7 @@ class PHTransTrainer(nnUNetTrainer):
                 break
 
             self.epoch += 1
+            self.save_checkpoint(join(self.output_folder, "model_latest.model"))
             self.print_to_log_file("This epoch took %f s\n" %
                                    (epoch_end_time - epoch_start_time))
 

@@ -329,7 +329,10 @@ class SegmentationNetwork(NeuralNetwork):
 
             #predict on cpu if cuda not available
             if torch.cuda.is_available():
-                gaussian_importance_map = gaussian_importance_map.cuda(self.get_device(), non_blocking=True)
+                # print('^'*50)
+                # print(type(gaussian_importance_map))
+                # transform gaussian_importance_map to tensor otherwise numpy has no attribute cuda error
+                gaussian_importance_map = torch.tensor(gaussian_importance_map).cuda(self.get_device(), non_blocking=True)
 
         else:
             gaussian_importance_map = None

@@ -41,6 +41,8 @@ def main():
             "_gt") == -1 and i.find("_4d") == -1]
         corresponding_seg_files = [i[:-7] + "_gt.nii.gz" for i in data_files]
         for d, s in zip(data_files, corresponding_seg_files):
+            # print('d:', d)
+            # print('s:', s)
             patient_identifier = d.split("/")[-1][:-7]
             id = int(patient_identifier[7:10])
             if id in test_id:

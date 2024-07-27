@@ -135,6 +135,9 @@ def main():
                                                              0], "training"),
                                                   base_module='phtrans.training')
 
+    # print("%"*50)
+    # print("output folder:", output_folder_name)
+    # print("experiment_id:", experiment_id)
     trainer = trainer_class(plans_file, fold, output_folder=output_folder_name, dataset_directory=dataset_directory,
                             batch_dice=batch_dice, stage=stage, unpack_data=decompress_data,
                             deterministic=deterministic, fp16=run_mixed_precision, custom_batch_size=args.custom_batch_size, 
